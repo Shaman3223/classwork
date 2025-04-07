@@ -32,6 +32,18 @@ class Program
         else
         {
             Console.WriteLine(" string 1 is NOT equal than string 2");
+            Console.WriteLine(string1.Length);
         }
+
+        string sentence = "Howdy do big wide world";
+        Console.WriteLine("There are "+sentence.Length +" characters in the sentence");
+        
+        string newStringIG = sentence.Substring(9, 4);
+        
+        Console.WriteLine(newStringIG);
+        Console.WriteLine("Does string starts with Howdy?" + sentence.StartsWith("Howdy"));
+        Console.WriteLine("Does string starts with howdy?" + sentence.StartsWith("howdy"));
+
+
     }
 }
