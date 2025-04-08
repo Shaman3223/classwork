@@ -3,8 +3,7 @@
 // This program will ask for three numbers
 //      add them together and display the total
 
-class Program
-{
+class Program{
     static void Main(string[] args)
     {
         // Define the variables to hold the numbers we need to add
@@ -13,34 +12,55 @@ class Program
         int number3 = 0; // Since we will be doing math it needs to be numeric
 
         // Define a variable to hold the sum of the numbers
+        int[] numbers = new int[3];
         int sum = 0;
+        double average = 0;
 
         Console.WriteLine("--- Starting program ---");
 
-        // Ask for the numbers one at time using the C# Console object
-        //     which represents the keyboard and screen
-        // Console.ReadLine() returns a string from keyboard - cannot store in an int
-        Console.WriteLine("Please enter a number:  "); // Asking for the number
-        string theResponse; // Define a string to hold the line of input from the keyboard
-        theResponse = Console.ReadLine(); // Get a line from the keyboard
-      
-        // int.Parse(string) will convert a string to an int
-        number1 = int.Parse(theResponse);
-
-        Console.WriteLine("Please enter a number:  ");
-        theResponse = Console.ReadLine(); // Reuse theResponse define above
-        number2 = int.Parse(theResponse);
-
-        Console.WriteLine("Please enter a number:  ");
-        theResponse = Console.ReadLine(); // Reuse theResponse define above
-        number3 = int.Parse(theResponse);
-
-        // Add the numbers together create a sum/total
-        sum = number1 + number2 + number3;
-       
-        // Tell the requester the sum/total (display)
-        Console.WriteLine("The sum is: " + sum);
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            Console.Write("Please enter a number: ");
+            numbers[i] = int.Parse(Console.ReadLine());
+        }
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            Console.WriteLine(numbers[i] + " is the number you have in the " + i + " Array position" );
+            sum += numbers[i];
+        }
+        
+        average = (double)sum / numbers.Length;
+        
+        Console.WriteLine("Sum of the numbers is: " + sum);
+        Console.WriteLine("Average of the numbers is: " + average);
+        
+        intArrayToMeidan(numbers);
 
         Console.WriteLine("--- Ending program ---");
     }
+
+    static void intArrayToMeidan(int[] array)
+    {
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            int nextNumber = i + 1;
+            
+            if (nextNumber > array.Length - 1)
+            {
+                Console.WriteLine("There are no more elements");
+                break;
+            }
+            
+            if (array[nextNumber] < array[i])
+            {
+                Console.WriteLine("tried");
+                array[nextNumber] = array[i];
+                array[i] = nextNumber;
+            }
+            Console.WriteLine(array[i]);
+        }
+        Console.WriteLine();
+    }
+    
 }
