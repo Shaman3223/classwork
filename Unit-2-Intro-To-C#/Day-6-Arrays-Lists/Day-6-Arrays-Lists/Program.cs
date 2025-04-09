@@ -12,7 +12,7 @@ class Program{
         int number3 = 0; // Since we will be doing math it needs to be numeric
 
         // Define a variable to hold the sum of the numbers
-        int[] numbers = new int[3];
+        int[] numbers = new int[10];
         int sum = 0;
         double average = 0;
 
@@ -60,7 +60,11 @@ class Program{
             }
             Console.WriteLine(array[i]);
         }
-        Console.WriteLine();
+        
+        for (int i = 0; i < array.Length; i++)
+        {
+            Console.WriteLine(array[i] + " is the number you have in the " + i + " Array position" );
+        }
     }
     
 }
