@@ -7,21 +7,104 @@ namespace Day_2_Dictionary_Example
     {
         static void Main(string[] args)
         {
-            /*********************************************************
-             * Example use of a Dictionary
-             *********************************************************/
+            
+            Dictionary<string, List<double>> gradeBook = new Dictionary<string, List<double>>();
+            bool broWantsToExit = false;
+            bool userInputValid = false;
+            do
+            {
+                Console.WriteLine("Bro do you want to exit? (y/n)");
+                string input = Console.ReadLine();
+                
+                string[] acceptableYResponses = 
+                [
+                    "y", "yes", "yeah", "yes I do", "indeed", "indeed I do", "yes bro"
+                ];
 
-            // Create a Dictionary for relate zip codes people live in
-            //
-            //  Key - Persons Name - Unique Id for an entry
-            //  (string)
-            //
-            //  value - Zip Code  - data associated with Key
-            //  (int)
-            //
-            // Syntax:   Dictionary<key-type, value-type> = new Dictionary<key-type, value-type)
+                foreach (string response in acceptableYResponses)
+                {
+                    if (input == response)
+                    {
+                        broWantsToExit = true;
+                        userInputValid = true;
+                        return;
+                    }
+                }
+                
+                string[] acceptableNResponses =
+                [
+                    "n", "no", "no I don't", "nah", "no bro", "nah bro"
+                ];
 
-         // data-type<key-type, value-type> name = new data-type<key-type, value>();  
+                foreach (string response in acceptableNResponses)
+                {
+                    if (input == response)
+                    {
+                        broWantsToExit = false;
+                        userInputValid = true;
+                        break;
+                    }
+                    
+                    userInputValid = false;
+                }
+                
+                //split
+                
+                if (!userInputValid)
+                {
+                    Console.WriteLine("Please enter a valid response");
+                }
+                else if (userInputValid)
+                {
+                    if (input.Contains("bro"))
+                    {
+                        Console.WriteLine("Wicked bro");
+                    }
+                    Console.WriteLine("Enter Student name: ");
+                    string studentName = Console.ReadLine();
+                    Console.WriteLine("Enter grade: ");
+                    
+                    double grade = 0.00;
+                    List<double> studentGrades = new List<double>();
+                    try
+                    {
+                        string UsertypedInput = "";
+                        while (UsertypedInput != "end")
+                        {
+                            Console.WriteLine("Enter student grade or type end to exit");
+                            UsertypedInput = Console.ReadLine();
+                            if (UsertypedInput == "end")
+                            {
+                                break;
+                            }
+                            grade = double.Parse(UsertypedInput);
+                            studentGrades.Add(grade);
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Please enter a valid grade");
+                        continue;
+                    }
+                    
+                    gradeBook[studentName] = studentGrades;
+                    Console.Clear();
+                }
+                
+            } while (!broWantsToExit);
+
+            foreach (KeyValuePair<string, List<double>> grade in gradeBook)
+            {
+                Console.WriteLine(grade.Key + " has a average grade of:");
+                double sum = 0.00;
+                foreach (double gradeValue in grade.Value)
+                {
+                    sum += gradeValue;
+                }
+                Console.WriteLine(sum/grade.Value.Count);
+                
+            }
+            
             Dictionary<string, int> personInfo   = new Dictionary<string, int>();
 
             // Add some people and their zip codes
