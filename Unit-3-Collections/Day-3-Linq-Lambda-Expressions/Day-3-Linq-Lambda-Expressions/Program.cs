@@ -6,6 +6,7 @@ using System.Linq;                 // Give me access to the LINQ
 
 internal class Program
 {
+    //Howdy
     // Data defined outside of any method (including Main())
     // Still inside the class Program
     // This way it is available and shared by all methods
